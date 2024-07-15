@@ -7,10 +7,10 @@ type Props = {
   aninmal: Post
 }
 
-export const Aninmal = async (props: Props) => {
+export const Aninmal = (props: Props) => {
   const [sound, setSound] = useState("meow");
   const authorId = props.aninmal.author?._ref
-  const author = await getPostAuthor(authorId)
+  const author = async () => await getPostAuthor(authorId)
 
   function makeSound() {
     setSound("woof");
@@ -20,9 +20,10 @@ export const Aninmal = async (props: Props) => {
     <>
       <h1>{props.aninmal.title}</h1>
       <p>{author?.name}</p>
-      <button onClick={makeSound}>
-        {props.aninmal.title} says {props.aninmal._id}!
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={makeSound}>
+        Make sound!
       </button>
+      <p>{props.aninmal.title} says {sound}!</p>
     </>
   )
 }
