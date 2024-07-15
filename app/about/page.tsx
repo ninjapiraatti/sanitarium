@@ -1,16 +1,14 @@
 import { getPosts } from '../../sanity/sanity-utils'
+import { Aninmal } from '../components/aninmal'
 export default async function About() {
   const posts = await getPosts()
 
   console.log(posts)
-  return <div className="p-4">
-    <h1>About</h1>
+  return <div className="bg-red-100 p-4">
+    <h1>Aninmals</h1>
     {
       posts && posts.map((post) => (
-        <div key={post.slug}>
-          <h1>{post.title}</h1>
-          <p>{post.url}</p>
-        </div>
+        <Aninmal key={post._id} aninmal={post} />
       ))
     }
   </div>
