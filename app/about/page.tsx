@@ -3,7 +3,7 @@ export default async function About() {
   const posts = await getPosts()
 
   console.log(posts)
-  return <div>
+  return <div className="p-4">
     <h1>About</h1>
     {
       posts && posts.map((post) => (
