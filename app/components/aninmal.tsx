@@ -31,11 +31,11 @@ export const Aninmal = (props: Props) => {
     const consonants = 'bcdfghjklmnpqrstvwxyz';
     const vowels = 'aeiou';
   
-    function findLetter(startIndex: number, isConsonant: boolean): string {
+    function findLetter(isConsonant: boolean): string {
       const targetAlphabet = isConsonant ? consonants : vowels;
-      let index = startIndex;
+      let index = 0;
       while (index < cleanUuid.length - 1) {
-        const num = parseInt(cleanUuid.slice(index, index + 2), 10);
+        const num = parseInt(cleanUuid.slice(index, index + 1), 10);
         if (num >= 1 && num <= 26) {
           const letter = String.fromCharCode(96 + num);
           if (targetAlphabet.includes(letter)) {
@@ -48,21 +48,13 @@ export const Aninmal = (props: Props) => {
     }
   
     let result = '';
-    let index = 0;
   
-    while (index < cleanUuid.length - 3) {
-      const consonant = findLetter(index, true);
-      const vowel = findLetter(index + 2, false);
-      result += consonant + vowel + consonant + vowel;
-      index += 4;
-    }
+    const consonant = findLetter(true);
+    const vowel = findLetter(false);
+    result += consonant + vowel + consonant + vowel;
   
     return result;
   }
-  
-  // Example usage
-  const uuid = '877d6a46-f2c7-47d9-aa5e-1dbbffcdff1e';
-  console.log(uuidToSyllables(uuid));
 
   return (
     <>
