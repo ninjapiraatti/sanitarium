@@ -28,14 +28,14 @@ export const Aninmal = (props: Props) => {
     // Remove any non-alphanumeric characters from the UUID
     const cleanUuid = uuid.replace(/[^a-zA-Z0-9]/g, '');
   
-    const consonants = 'bcdfghjklmnpqrstvwxyz';
-    const vowels = 'aeiou';
+    const consonants = 'bcdfghjklmnpqrstvwxz';
+    const vowels = 'aeiouy';
   
     function findLetter(isConsonant: boolean): string {
       const targetAlphabet = isConsonant ? consonants : vowels;
       let index = 0;
       while (index < cleanUuid.length - 1) {
-        const num = parseInt(cleanUuid.slice(index, index + 1), 10);
+        const num = parseInt(cleanUuid.slice(index, index + 2), 10);
         if (num >= 1 && num <= 26) {
           const letter = String.fromCharCode(96 + num);
           if (targetAlphabet.includes(letter)) {
@@ -44,7 +44,7 @@ export const Aninmal = (props: Props) => {
         }
         index++;
       }
-      return isConsonant ? 'b' : 'a'; // Default if no suitable letter found
+      return isConsonant ? 'b' : 'a';
     }
   
     let result = '';
